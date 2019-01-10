@@ -1,0 +1,94 @@
+<!-----------------------------------------------------------------------------
+*   Program Name : To Do List                                                 *
+*   Date         : 26/09/2018                                                 *
+*   Author       : Ramya                                                      *
+*   Institute    : WSA                                                        *
+------------------------------------------------------------------------------>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Demo</title>
+<style>
+    body{
+        background-color: lightskyblue;
+    }
+    h1{
+        text-align: center;
+    }
+    #container{
+        width:900px;
+        height: 850px;
+        margin: 0 auto;
+        padding-left: 100px;
+    }
+    .Penguin{
+        float:left;
+        width: 250px;
+        height: 250px;
+        background-image: url("mound.png");
+    }
+    .Penguin:hover{
+        background-image: url("mound_hover.png");
+        cursor: pointer;
+    }
+</style>
+<head>
+<body>
+    <h1> Find The Penguin</h1>
+                <div  id="container">
+                    <div class="Penguin" onclick="getRandomImage(this)"></div>
+                    <div class="Penguin" onclick="getRandomImage(this)"></div>
+                    <div class="Penguin" onclick="getRandomImage(this)"></div>
+                    <div class="Penguin" onclick="getRandomImage(this)"></div>
+                    <div class="Penguin" onclick="getRandomImage(this)"></div>
+                    <div class="Penguin" onclick="getRandomImage(this)"></div>
+                    <div class="Penguin" onclick="getRandomImage(this)"></div>
+                    <div class="Penguin" onclick="getRandomImage(this)"></div>
+                    <div class="Penguin" onclick="getRandomImage(this)"></div>
+            </div>
+    <div id="rest" style="position:absolute; display:none;width:100%;height:100%;background:blue">
+        <h1 style="color:olivedrab;margin-left: 25%;">GOT YOU.!!</h1>
+        <img class="animate" style="margin-left: 25%; height:300px;width:300px;"src="yeti.png">
+    </div>
+<script>
+    debugger;
+    var indexArray = [];
+    //getting random number using math.random js function
+    function getRand(){
+        return Math.floor((Math.random()*9));
+    }
+
+    //checking if the random number is repeated
+    function checkRand(number){
+        var flag = false;
+        //search all the elements of array wether the given random number is existing
+        for(var iLoop = 0; iLoop < 9; iLoop++){
+            if(indexArray[iLoop] == number){
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    //function to change background image of div
+    function getRandomImage(penguin){
+        //get random number from getrandom function
+        var randNumber = getRand();
+        //check if given random number is already displayed r not
+        if(!checkRand(randNumber))
+            //if its the wacked penguin
+            if(randNumber == 8){
+                document.getElementById("container").style.display = "none";
+                document.getElementById("rest").style.display = "block";
+            }
+            else{
+                alert("random number is:" +randNumber);
+                penguin.style.backgroundImage = "url('penguin"+ randNumber +".png')";
+
+                //push the given number to array index array so that its not repetative
+                indexArray.push(randNumber);
+            }
+    }
+</script>
+</body>
+</html>
